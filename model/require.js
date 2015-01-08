@@ -9,6 +9,7 @@ var RequireSchema = new Schema({
     require_content:{type:String},
     website_id:{type:String},
     content_id:{type:Schema.ObjectId},
+    customer_id:{type:Schema.ObjectId},
     create_user:{type:Schema.ObjectId},
     create_date:{type:Date},
     remark:{type:String}

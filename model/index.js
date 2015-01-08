@@ -14,7 +14,9 @@ mongoose.connect(config.db_connect,function(err){
 require('./content');
 require('./require');
 require('./user');
+require('./customer');
 
 exports.Content = mongoose.model('Content');
 exports.Require = mongoose.model('Require');
 exports.User = mongoose.model('User');
+exports.Customer = mongoose.model('Customer');

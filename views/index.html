@@ -2,7 +2,7 @@
     <% for(var i=0;i<data.length ; i++){ %>
         <div class="col-xs-3">
         <div class="widget-box">
-            <div class="widget-header widget-header-smal header-color-dark">
+            <div class="widget-header widget-header-small header-color-dark">
                 <h7><%=data[i].title.length<=12?data[i].title:data[i].title.substr(0,12)+'...' %></h7>
 
                 <div class="widget-toolbar">
@@ -10,23 +10,26 @@
                     <a href="#" data-action="settings">
                         <i class="icon-edit"></i>
                     </a>
-                    <a href="#" data-action="nav">
+                    <a href="<%= data[i].source_url %>" target="_blank" data-action="nav">
                         <i class="icon-arrow-right"></i>
                     </a>
                 </div>
             </div>
 
             <div class="widget-body">
-                <div class="widget-body-inner" style="display: block;">
                     <div class="widget-main padding-4">
-                        <div class="slimScrollDiv" style="position: relative; overflow: hidden; width: auto; height: 200px;"><div class="slim-scroll" data-height="200" style="overflow: hidden; width: auto; height: 200px;">
+                        <div class="slimScrollDiv" style="position: relative; overflow: hidden; width: auto; height: 200px;">
+                            <div class="slim-scroll" data-height="200" style="overflow: hidden; width: auto; height: 200px;">
                             <div class="content">
                                 <%=data[i].content%>
                             </div>
-                        </div><div class="slimScrollBar ui-draggable" style="width: 7px; position: absolute; top: 0px; opacity: 0.4; display: none; border-top-left-radius: 7px; border-top-right-radius: 7px; border-bottom-right-radius: 7px; border-bottom-left-radius: 7px; z-index: 99; right: 1px; height: 57.4448529411765px; background: rgb(0, 0, 0);"></div><div class="slimScrollRail" style="width: 7px; height: 100%; position: absolute; top: 0px; border-top-left-radius: 7px; border-top-right-radius: 7px; border-bottom-right-radius: 7px; border-bottom-left-radius: 7px; opacity: 0.2; z-index: 90; right: 1px; display: none; background: rgb(51, 51, 51);"></div></div>
+                        </div>
+                            <div class="slimScrollBar ui-draggable" style="width: 7px; position: absolute; top: 0px; opacity: 0.4; display: none; border-top-left-radius: 7px; border-top-right-radius: 7px; border-bottom-right-radius: 7px; border-bottom-left-radius: 7px; z-index: 99; right: 1px; height: 57.4448529411765px; background: rgb(0, 0, 0);"></div>
+                            <div class="slimScrollRail" style="width: 7px; height: 100%; position: absolute; top: 0px; border-top-left-radius: 7px; border-top-right-radius: 7px; border-bottom-right-radius: 7px; border-bottom-left-radius: 7px; opacity: 0.2; z-index: 90; right: 1px; display: none; background: rgb(51, 51, 51);"></div>
+                        </div>
                     </div>
 
-                </div></div>
+                </div>
         </div>
     </div>
     <%} %>

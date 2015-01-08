@@ -224,13 +224,24 @@
 <script type="text/javascript">
     window.jQuery || document.write("<script src='libs/ace/js/jquery-2.0.3.min.js'>"+"<"+"script>");
 </script>
+<script src="libs/ace/js/jquery.slimscroll.min.js"></script>
 <script src="libs/ace/js/jquery-ui-1.10.3.custom.min.js"></script>
 <script src="libs/ace/js/bootstrap.min.js"></script>
 <!-- ace scripts -->
 
 <script src="libs/ace/js/ace-elements.min.js"></script>
 <script src="libs/ace/js/ace.min.js"></script>
-
+<script language="JavaScript" type="text/javascript">
+    $(function(){
+        $('.slim-scroll').each(function () {
+            var $this = $(this);
+            $this.slimScroll({
+                height: $this.data('height') || 100,
+                railVisible:true
+            });
+        });
+    });
+</script>
 </div>
 </body>
 </html>
