@@ -3,11 +3,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8" />
-    <title>登录页面 - Bootstrap后台管理系统模版Ace下载</title>
-    <meta name="keywords" content="Bootstrap模版,Bootstrap模版下载,Bootstrap教程,Bootstrap中文" />
-    <meta name="description" content="站长素材提供Bootstrap模版,Bootstrap教程,Bootstrap中文翻译等相关Bootstrap插件下载" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
+    <title>SteelSearcher Data Plat-Login</title>
     <!-- basic styles -->
 
     <link href="libs/ace/css/bootstrap.min.css" rel="stylesheet" />
@@ -17,12 +13,7 @@
     <!-- ace styles -->
     <link rel="stylesheet" href="libs/ace/css/ace.min.css" />
     <link rel="stylesheet" href="libs/ace/css/ace-rtl.min.css" />
-    <!-- inline styles related to this page -->
-
-    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
-
 </head>
-
 <body class="login-layout">
 <div class="main-container">
     <div class="main-content">
@@ -40,6 +31,7 @@
                     <div class="space-6"></div>
 
                     <div class="position-relative">
+
                         <div id="login-box" class="login-box visible widget-box no-border">
                             <div class="widget-body">
                                 <div class="widget-main">
@@ -49,7 +41,12 @@
                                     </h4>
 
                                     <div class="space-6"></div>
-
+                                    <% if(typeof(message) !== 'undefined' && message){ %>
+                                    <h5 class="header smaller lighter green">
+                                        <i class="icon-bullhorn"></i>
+                                        <%= message %>
+                                    </h5>
+                                    <%}%>
                                     <form action="/sigin" method="post">
                                         <fieldset>
                                             <label class="block clearfix">
