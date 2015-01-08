@@ -3,9 +3,14 @@
  */
 var express = require('express');
 var router = express.Router();
+var contentProxy = require('../proxy/content');
 
-router.get('/',function(req,res){
-   res.render('index');
+router.get('/',function(req,res,next){
+   contentProxy.findNoConvert(function(err,data){
+      if(err) next(err);
+      res.render('index',{data:data});
+   });
+
 });
 
 module.exports = router;

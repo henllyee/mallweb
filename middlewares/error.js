@@ -3,6 +3,7 @@
  */
 exports.errorHandle=function(err,req,res,next){
 
+    console.log(err);
     res.status(err.status || 500);
     //分类处理
     if(err&&err.status&&err.status=='403'){

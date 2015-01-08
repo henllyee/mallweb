@@ -29,7 +29,10 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(session({ secret: "steelsearcher",
     store: new MongoStore({
     url: config.db_connect
-    })}));
+    }),
+    resave: true,
+    saveUninitialized: true,
+}));
 app.use(auth.auth);
 route(app);
 
