@@ -16,7 +16,8 @@
     "connect-mongo": "~0.4.1",
     "mongoose":"*",
     "express-session":"*",
-    "ejs-mate":"2.0.0"
+    "ejs-mate":"2.0.0",
+    "ansyc":""
   },
   "devDependencies":{
     "mocha":"*",
