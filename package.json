@@ -17,7 +17,7 @@
     "mongoose":"*",
     "express-session":"*",
     "ejs-mate":"2.0.0",
-    "ansyc":""
+    "async":""
   },
   "devDependencies":{
     "mocha":"*",

@@ -2,7 +2,7 @@
  * Created by hengliang.cui on 2015/1/7.
  */
 var should = require('should');
-var userProxy = require('../../proxy/user');
+var userProxy = require('../../proxy').User;
 
 describe('user proxy',function(){
     describe('add user',function(){

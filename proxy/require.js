@@ -3,6 +3,43 @@
  */
 var Require = require('../model').Require;
 var Customer = require('../model').Customer;
+var async = require('async');
+
+
+exports.convert = function(data,callback){
+    //是否是已经存在的客户
+    if(data&&data.customer_id){
+        addRequire(data,function(err,require){
+            if(err){
+                callback(err,false);
+                return;
+            }
+            callback(null,true);
+        });
+    }
+    else{
+        async.waterfall([function(cb){
+            addCustomer(data,function(err,customer){
+                if(err) throw err;
+                data.customer_id = customer._id;
+                cb(null,data);
+            });
+        },
+        function(requireData,cb){
+            addRequire(requireData,function(err,require){
+                if(err) throw  err;
+                cb(null,true);
+            });
+        }],
+        function(err,result){
+            if(err) {
+                callback(err, false);
+                return;
+            }
+            callback(null,true);
+        });
+    }
+}
 
 /*Help Methods*/
 
@@ -24,7 +61,6 @@ function addCustomer(data,callback){
     model.company_address = data.company_address;
     model.company_fax = data.company_fax;
     model.company_tel = data.company_tel;
-    model.company_fax = data.company_fax;
     model.sale_category = data.sale_category;
     model.website = data.website;
     model.contract_person = data.contract_person;
@@ -32,8 +68,6 @@ function addCustomer(data,callback){
     model.contract_email = data.contract_email;
     model.content_id = data.content_id;
     model.create_person = data.create_person;
-    model.create_date = data.create_date;
-    model.update_person = data.update_person;
-    model.update_date = data.update_date;
     model.save(callback);
 }
+

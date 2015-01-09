@@ -3,7 +3,7 @@
  */
 var express = require('express');
 var router = express.Router();
-var contentProxy = require('../proxy/content');
+var contentProxy = require('../proxy').Content;
 
 router.get('/',function(req,res,next){
    contentProxy.findNoConvert(function(err,data){

@@ -3,7 +3,7 @@
  */
 var express = require('express');
 var router = express.Router();
-var proxy = require('../proxy/user');
+var proxy = require('../proxy/').User;
 var language = require('../language');
 
 router.get('/',function(req,res){
