@@ -20,5 +20,6 @@ function addRequire(data,callback){
 
 function addCustomer(data,callback){
     var model = new Customer();
-
+    model.company_name=data.company_name;
+    model.save(callback);
 }
