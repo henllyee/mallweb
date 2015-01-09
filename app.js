@@ -12,6 +12,7 @@ var error = require('./middlewares/error');
 var config = require('./config')
 var app = express();
 
+var staticDir = path.join(__dirname, 'public');
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -31,8 +32,11 @@ app.use(session({ secret: "steelsearcher",
     url: config.db_connect
     }),
     resave: true,
-    saveUninitialized: true,
+    saveUninitialized: true
 }));
+
+app.use('/public', express.static(staticDir));
+
 app.use(auth.auth);
 route(app);
 
