@@ -11,7 +11,7 @@ var RequireSchema = new Schema({
     content_id:{type:Schema.ObjectId},
     customer_id:{type:Schema.ObjectId},
     create_user:{type:Schema.ObjectId},
-    create_date:{type:Date},
+    create_date:{type:Date,default:Date.now},
     remark:{type:String}
 });
 mongoose.model('Require',RequireSchema);
