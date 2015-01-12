@@ -38,7 +38,8 @@ router.post('/',function(req,res,next){
 function generateUserModel(data){
     return {
         username:data.username,
-        name:data.name
+        name:data.name,
+        id:data._id
     };
 }
 

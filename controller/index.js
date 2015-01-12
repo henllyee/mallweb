@@ -6,3 +6,4 @@ exports.Require = require('./require');
 exports.Sigin = require('./sigin');
 exports.SiginOut = require('./siginout');
 exports.Site = require('./site');
+exports.Customer = require('./customer');
