@@ -7,6 +7,7 @@ var bodyParser = require('body-parser');
 var session = require('express-session');
 var MongoStore = require('connect-mongo')(session);
 var route=require('./routes');
+var common = require('./middlewares/common');
 var auth = require('./middlewares/auth');
 var error = require('./middlewares/error');
 var config = require('./config')
@@ -36,7 +37,7 @@ app.use(session({ secret: "steelsearcher",
 }));
 
 app.use('/public', express.static(staticDir));
-
+app.use(common.golabal_setting);
 app.use(auth.auth);
 route(app);
 
