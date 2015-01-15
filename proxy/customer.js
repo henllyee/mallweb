@@ -4,6 +4,10 @@
 
 var Customer = require('../model').Customer;
 
+exports.findAll = function(callback){
+    Customer.find({},callback);
+}
+
 exports.findPagination=function(obj,callback){
     var q=obj.search||{};
     var pageNumber=obj.page.num||1;

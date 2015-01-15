@@ -18,7 +18,8 @@
     "express-session":"*",
     "ejs-mate":"2.0.0",
     "async":"",
-    "moment":"*"
+    "moment":"*",
+    "excel-export":"*"
   },
   "devDependencies":{
     "mocha":"*",
