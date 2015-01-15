@@ -14,6 +14,32 @@
     <!-- inline styles related to this page -->
     <!-- ace settings handler -->
     <script src="/public/libs/ace/js/ace-extra.min.js"></script>
+    <!-- basic scripts -->
+
+    <!--[if !IE]> -->
+    <script type="text/javascript">
+        window.jQuery || document.write("<script src='/public/libs/ace/js/jquery-2.0.3.min.js'>"+"<"+"script>");
+    </script>
+    <script src="/public/libs/ace/js/jquery.slimscroll.min.js"></script>
+    <script src="/public/libs/ace/js/jquery-ui-1.10.3.custom.min.js"></script>
+    <script src="/public/libs/ace/js/chosen.jquery.min.js"></script>
+
+    <script src="/public/libs/ace/js/bootstrap.min.js"></script>
+    <!-- ace scripts -->
+
+    <script src="/public/libs/ace/js/ace-elements.min.js"></script>
+    <script src="/public/libs/ace/js/ace.min.js"></script>
+    <script language="JavaScript" type="text/javascript">
+        $(function(){
+            $('.slim-scroll').each(function () {
+                var $this = $(this);
+                $this.slimScroll({
+                    height: $this.data('height') || 100,
+                    railVisible:true
+                });
+            });
+        });
+    </script>
 </head>
 
 <body>
@@ -219,32 +245,7 @@
 </a>
 </div><!-- /.main-container -->
 
-<!-- basic scripts -->
 
-<!--[if !IE]> -->
-<script type="text/javascript">
-    window.jQuery || document.write("<script src='/public/libs/ace/js/jquery-2.0.3.min.js'>"+"<"+"script>");
-</script>
-<script src="/public/libs/ace/js/jquery.slimscroll.min.js"></script>
-<script src="/public/libs/ace/js/jquery-ui-1.10.3.custom.min.js"></script>
-<script src="/public/libs/ace/js/chosen.jquery.min.js"></script>
-
-<script src="/public/libs/ace/js/bootstrap.min.js"></script>
-<!-- ace scripts -->
-
-<script src="/public/libs/ace/js/ace-elements.min.js"></script>
-<script src="/public/libs/ace/js/ace.min.js"></script>
-<script language="JavaScript" type="text/javascript">
-    $(function(){
-        $('.slim-scroll').each(function () {
-            var $this = $(this);
-            $this.slimScroll({
-                height: $this.data('height') || 100,
-                railVisible:true
-            });
-        });
-    });
-</script>
 </div>
 </body>
 </html>
