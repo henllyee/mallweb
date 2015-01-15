@@ -5,6 +5,8 @@ var express = require('express');
 var router = express.Router();
 var contentProxy = require('../proxy').Content;
 var requireProxy = require('../proxy').Require;
+var nodeExcel = require('excel-export');
+var moment = require('moment');
 
 router.get('/convert/:tid',function(req,res,next){
     var contentId = req.params.tid;
@@ -37,5 +39,46 @@ router.post('/convert',function(req,res,next){
         if(result) res.redirect('/');
     })
 });
+
+
+router.get('/',function(req,res,next){
+    contentProxy.findAll(function(err,data){
+        if(err){
+            next(err);
+            return;
+        }
+        res.render('content/index',{content:data});
+    });
+});
+
+router.get('/export',function(req,res,next){
+    contentProxy.findAll(function(err,data){
+        if(err){
+           next(err);
+           return;
+        }
+        var conf ={};
+        conf.cols = [
+            {caption:'Content Title', type:'string'},
+            {caption:'Content', type:'string'},
+            {caption:'Source Url', type:'string'},
+            {caption:'Publish Date', type:'Date'}
+
+        ];
+        conf.rows=[];
+        for(var i=0;i<data.length;i++){
+            conf.rows.push(
+                [data[i].title,
+                data[i].content,
+                data[i].source_url,
+                moment(data[i].publish_date).format('YYYY-MM-DD hh:mm:ss')
+                ]);
+        }
+        var result = nodeExcel.execute(conf);
+        res.setHeader('Content-Type', 'application/vnd.openxmlformats');
+        res.setHeader("Content-Disposition", "attachment; filename=" + "content.xlsx");
+        res.end(result, 'binary');
+    });
+})
 
 module.exports = router;
