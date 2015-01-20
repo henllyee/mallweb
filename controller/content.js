@@ -5,14 +5,25 @@ var express = require('express');
 var router = express.Router();
 var contentProxy = require('../proxy').Content;
 var requireProxy = require('../proxy').Require;
+var customerProx = require('../proxy').Customer;
 var nodeExcel = require('excel-export');
 var moment = require('moment');
 
 router.get('/convert/:tid',function(req,res,next){
     var contentId = req.params.tid;
     contentProxy.findById(contentId,function(err,data){
-        if(err) next(err);
-        res.render('content/convert',{content:data});
+        if(err) {
+            next(err);
+            return;
+        }
+        customerProx.findAll(function(err,customers){
+            if(err) {
+                next(err);
+                return;
+            }
+            res.render('content/convert',{content:data,customers:customers});
+        });
+
     });
 });
 

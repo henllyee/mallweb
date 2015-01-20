@@ -35,3 +35,14 @@ exports.findPagination=function(obj,callback){
     })
 
 }
+
+exports.exists=function(companyName,callback){
+    Customer.findOne({company_name:companyName},function(err,result){
+        if(err){
+            callback(err);
+            return;
+        }
+        if(result) return true;
+        return false;
+    });
+}

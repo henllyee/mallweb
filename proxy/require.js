@@ -3,42 +3,50 @@
  */
 var Require = require('../model').Require;
 var Customer = require('../model').Customer;
+var Content = require('../model').Content;
 var async = require('async');
 
 
 exports.convert = function(data,callback){
     //是否是已经存在的客户
-    if(data&&data.customer_id){
-        addRequire(data,function(err,require){
-            if(err){
-                callback(err,false);
-                return;
-            }
-            callback(null,true);
-        });
-    }
-    else{
+    Customer.findOne({company_name:data.company_name},function(err,customer){
+        if(err){
+            callback(err,false);
+            return;
+        }
+        console.log(customer);
         async.waterfall([function(cb){
-            addCustomer(data,function(err,customer){
-                if(err) throw err;
-                data.customer_id = customer._id;
+            if(!customer){
+                addCustomer(data,function(err,cus){
+                    data.customer_id=cus._id;
+                    cb(null,data);
+                })
+            }
+            else{
                 cb(null,data);
+            }
+        },
+        function(requiredata,cb){
+            addRequire(requiredata,function(err,cus){
+                if(err) throw  err;
+                cb(null,requiredata);
             });
         },
-        function(requireData,cb){
-            addRequire(requireData,function(err,require){
+        function(requiredata,cb){
+            updateContent(requiredata,function(err,cus){
                 if(err) throw  err;
                 cb(null,true);
-            });
-        }],
-        function(err,result){
+            })
+        }
+        ],function(err,result){
             if(err) {
                 callback(err, false);
                 return;
             }
             callback(null,true);
         });
-    }
+
+    })
 }
 
 /*Help Methods*/
@@ -69,5 +77,9 @@ function addCustomer(data,callback){
     model.content_id = data.content_id;
     model.create_person = data.create_person;
     model.save(callback);
+}
+
+function updateContent(data,callback){
+    Content.update({'id':data.content_id},{$set:{isconvert:true}},callback);
 }
 

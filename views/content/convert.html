@@ -109,23 +109,16 @@
                         <form class="form-horizontal" action="/content/convert" method="post"  role="form">
 
                             <div class="form-group">
-                                <label class="col-sm-2 control-label no-padding-right" for="form-field-2">Company Name</label>
+                                <label class="col-sm-2 control-label no-padding-right" for="company_name">Company Name</label>
 
-                                <div class="col-sm-3">
+                                <div class="col-sm-4">
                                     <input type="text" id="company_name" name="company_name" placeholder="Company Name" class="col-xs-10">
-                                    <select class="width-70 chosen-select" style="display: none;" id="form-field-select-3" data-placeholder="Choose a Country...">
-                                        <option value="">&nbsp;</option>
-                                        <option value="AL">江苏</option>
-                                        <option value="AK">福建</option>
-
-                                    </select>
-
                                 </div>
-                                <div class="col-sm-1 no-padding-left no-margin-left">
-                                    <input name="form-field-checkbox" type="checkbox" id="isChoose" class="ace">
-                                    <span class="lbl">Choose?</span>
-                                </div>
+                                <label class="col-sm-2 control-label no-padding-right" for="website"> Company Fax </label>
 
+                                <div class="col-sm-4">
+                                    <input type="text" id="website" name="website" placeholder="Website" class="col-xs-10">
+                                </div>
                             </div>
 
                             <div class="form-group">
@@ -175,6 +168,7 @@
 
                                 <div class="col-sm-4">
                                     <textarea class="form-control" id="require_content" name="require_content" class="col-xs-10" style="width: 85%" placeholder="Require Content"></textarea>
+                                    <input type="hidden" name="customer_id" id="customer_id">
                                 </div>
                             </div>
 
@@ -199,10 +193,42 @@
     </div><!-- /widget-box -->
 </div>
 </div>
+<script src="/public/libs/ace/js/jquery-ui-1.10.3.full.min.js"></script>
 
 <script>
     $(function(){
 
-        $(".chosen-select").hide();
+        var copanies = [
+            <% for(var i=0;i<customers.length;i++){ %>
+            {
+                value:"<%=customers[i].company_name%>",
+                customer_id:"<%=customers[i]._id%>",
+                company_address:"<%=customers[i].company_address%>",
+                company_fax:"<%=customers[i].company_fax%>",
+                company_tel:"<%=customers[i].company_tel%>",
+                website:"<%=customers[i].website%>",
+                sale_category:"<%=customers[i].sale_category%>",
+                contract_email:"<%=customers[i].contract_email%>",
+                contract_phone:"<%=customers[i].contract_phone%>",
+                contract_person:"<%=customers[i].contract_person%>"
+            },
+            <% } %>
+        ];
+
+        $( "#company_name" ).autocomplete({
+            source: copanies,
+            select:function(event,ui){
+                $('#company_address').val(ui.item.company_address);
+                $('#company_fax').val(ui.item.company_fax);
+                $('#company_tel').val(ui.item.company_tel);
+                $('#sale_category').val(ui.item.sale_category);
+                $('#contract_email').val(ui.item.contract_email);
+                $('#contract_phone').val(ui.item.contract_phone);
+                $('#contract_person').val(ui.item.contract_person);
+                $('#website').val(ui.item.website);
+                $('#customer_id').val(ui.item.customer_id);
+                $('#require_content').focus();
+            }
+        });
     })
 </script>
